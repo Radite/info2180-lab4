@@ -63,10 +63,41 @@ $superheroes = [
   ], 
 ];
 
-?>
+// Get the 'query' parameter from the GET request and sanitize it as a string
+$query = filter_input(INPUT_GET, 'query', FILTER_SANITIZE_STRING);
 
-<ul>
-<?php foreach ($superheroes as $superhero): ?>
-  <li><?= $superhero['alias']; ?></li>
-<?php endforeach; ?>
-</ul>
+$response = ""; // Initialize an empty response variable
+
+if ($query) {
+    $found = false; // Initialize a flag to check if a superhero is found
+    
+    foreach ($superheroes as $superhero) {
+        if (strcasecmp($superhero['alias'], $query) === 0 || strcasecmp($superhero['name'], $query) === 0) {
+            // Generate the image filename based on the superhero's alias
+            $imageFilename = strtolower(str_replace(' ', '_', $superhero['alias'])) . ".jpg";
+            $response .= "<div class='superhero-info'>";
+            $response .= "<img class='superhero-image' src='" . htmlspecialchars($imageFilename) . "' alt='" . htmlspecialchars($superhero['alias']) . "'>";
+            $response .= "<h3>" . htmlspecialchars($superhero['alias']) . "</h3>";
+            $response .= "<h4>A.K.A " . htmlspecialchars($superhero['name']) . "</h4>";
+            $response .= "<p>" . htmlspecialchars($superhero['biography']) . "</p>";
+            $response .= "</div>";
+            $found = true; // Set the flag to indicate a superhero is found
+            break; // Exit the loop after finding a match
+        }
+    }
+    
+    if (!$found) {
+        $response = "<div>SUPERHERO NOT FOUND</div>"; // Display a message if no superhero is found
+    }
+    
+} else {
+    // If no search term is provided, return a list of all superheroes
+    $response = "<ul>";
+    foreach ($superheroes as $superhero) {
+        $response .= "<li>" . htmlspecialchars($superhero['alias']) . "</li>";
+    }
+    $response .= "</ul>";
+}
+
+echo $response; // Output the response
+?>

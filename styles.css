@@ -1,29 +1,70 @@
 body {
     margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 0;
+    font-family: Arial, sans-serif; /* Use a standard font for the entire page */
+    background-color: #f4f4f4; /* Set a light grey background */
 }
 
-.content {
-    text-align: center; 
+.container {
+    max-width: 70%; /* Limit the container width to 70% of the viewport width */
+    margin: auto; /* Center the container horizontally */
+    margin-top: 1em; /* Add some top margin for spacing */
 }
 
-button {
-    background-color: blue;
-    color: white;
-    padding: 10px 20px;
+.search-area {
+    padding: 1em;
+    text-align: left; /* Align the content to the left within the search area */
+}
+
+#search-query {
+    padding: 1em;
+    padding-right: 30em; /* Add right padding to the search query input to create space for a button */
+    border: 1px solid #ccc;
+    width: 200px; /* Set a fixed width for the search input */
+
+}
+
+#search-button {
+    padding: 1.1em 1em;
+    background-color: #ed1d24; /* Use Spiderman red as the background color for the search button */
+    color: white; /* Set text color to white for better visibility */
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    display: block; 
-    margin: 10px auto; 
+    border-radius: 5px; /* Apply rounded corners to the button */
+    cursor: pointer; /* Change cursor to a pointer on hover */
 }
 
-#marvel-image{
-    display: block; 
-    margin: 10px auto;
-    max-width: 50%;
-    height: auto; 
+.result-container {
+    margin-top: 1em; /* Add top margin to separate search results from the search area */
+    padding: 1em;
+    text-align: left; /* Align the text to the left within the result container */
+}
+
+.result-container h3, /* Define styles for alias */
+.result-container h4, /* Define styles for name */
+.result-container p  /* Define styles for biography */ {
+    margin: 0.5em 0; /* Add margin to separate elements within the result container */
+    padding: 0.5em 0; /* Add padding for spacing */
+}
+
+/* Add a line after the alias */
+.result-container h3:after {
+    content: ''; /* Generate content after the alias element */
+    display: block;
+    border-bottom: 2px solid #ccc; /* Create a line separator with a light grey color */
+    margin-top: 0.5em; /* Add some space between the alias and the line */
+}
+
+h1 {
+    color: white; /* Set text color to white for better contrast on a red background */
+    background-color: #ed1d24; /* Use Spiderman-red as the background color for the heading */
+    margin: 0 0 20px; /* Remove margin from the heading and add some space below */
+    font-size: 3em; /* Adjust the font size as needed */
+    text-align: center; /* Center-align the heading text */
+
+}
+
+.superhero-image {
+    width: 200px; /* Set a fixed width for superhero images */
+    height: 200px; /* Set a fixed height for superhero images */
+    object-fit: cover; /* Scale and crop the image to cover the specified dimensions */
 }
